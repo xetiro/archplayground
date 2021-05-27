@@ -1,10 +1,12 @@
-package com.xetiro.archplayground
+package com.xetiro.archplayground.mvc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.xetiro.archplayground.MyModel
+import com.xetiro.archplayground.R
 
 class MainMvcActivity : AppCompatActivity() {
 
@@ -13,8 +15,8 @@ class MainMvcActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_mvc)
-        Toast.makeText(this, "Hello World !!!", Toast.LENGTH_LONG).show()
+        setContentView(R.layout.activity_main)
+        Toast.makeText(this, "Hello MVC !!!", Toast.LENGTH_LONG).show()
 
         nameTxt = findViewById(R.id.textView)
         submitBtn = findViewById(R.id.button)
