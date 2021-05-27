@@ -1,36 +1,32 @@
 package com.xetiro.archplayground.mvvm
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.xetiro.archplayground.MyModel
-
-import com.xetiro.archplayground.R
+import com.xetiro.archplayground.databinding.ActivityMainBinding
 
 
 class MainMvvmActivity : AppCompatActivity() {
 
-    lateinit var nameTxt: TextView
-    lateinit var submitBtn: Button
     private val viewModel: MyViewModel by viewModels<MyViewModel>()
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Toast.makeText(this, "Hello MVVM !!!", Toast.LENGTH_LONG).show()
 
-        nameTxt = findViewById(R.id.textView)
-        submitBtn = findViewById(R.id.button)
-        submitBtn.setOnClickListener {
-            viewModel.getModelData()
+        binding.button.setOnClickListener {
+            viewModel.onUserClicked()
         }
+        
         viewModel.getModel().observe(this, Observer<MyModel> { myModel ->
-            nameTxt.text = "${myModel.appName} [${myModel.versionCode}]"
+            binding.textView.text = "${myModel.appName} [${myModel.versionCode}]"
         })
     }
 

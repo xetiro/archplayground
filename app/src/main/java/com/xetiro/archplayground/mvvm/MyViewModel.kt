@@ -7,6 +7,7 @@ import com.xetiro.archplayground.MyModel
 
 class MyViewModel : ViewModel() {
 
+    private var count = 0
     private val model = MutableLiveData<MyModel>()
 
 
@@ -14,10 +15,11 @@ class MyViewModel : ViewModel() {
         return model
     }
 
-    fun getModelData() {
+    fun onUserClicked() {
+        count++
         model.postValue(loadModel())
     }
 
-    private fun loadModel() = MyModel("MVVM Example", 3)
+    private fun loadModel() = MyModel("MVVM Example", count)
 
 }
